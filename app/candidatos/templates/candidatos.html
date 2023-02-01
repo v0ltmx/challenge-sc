@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    {{ fontawesome_html() }}
+ 
+    <title>CANDIDATOS - HERÓIS</title>
+    <link rel="stylesheet" href="../static/main.css">
+</head>
+<body>    
+    {% block content %}
+    <ul class="nav nav-tabs nav-justified" style="background-color:aliceblue">
+        <li class="nav-item">
+            <a class="nav-link" style="background-color: crimson; color: aliceblue;" aria-current="page" href="/home">Home</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link"  style="background-color: crimson; color: aliceblue;" href="/candidatos">Candidatos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  style="background-color: crimson; color: aliceblue;" href="/candidatos/vingadores">Vingadores</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="background-color: crimson; color: aliceblue;" href="/candidatos/equipe">Equipe</a>
+        </li>
+    </ul>
+
+    {% if mensagem == 'Enviado para os Vingadores' %}
+    <div class="alert alert-success" role="alert">
+        Enviados para os Vingadores
+    </div>
+
+    {% elif mensagem == 'Enviados para a Equipe' %}
+    <div class="alert alert-success" role="alert">
+        Enviados para a Equipe
+    </div>
+
+    {% elif mensagem == 'Esse herói já está nos Vingadores' %}
+    <div class="alert alert-danger" role="alert">
+        Esse herói já está nos Vingadores
+    </div>
+
+    {% elif mensagem == 'Esse herói já está na equipe' %}
+    <div class="alert alert-danger" role="alert">
+        Esse herói já está na Equipe
+    </div>
+    {% endif %}
+
+    {% if mensagem == 'Sucesso' %}
+    <div class="alert alert-success" role="alert">
+        {{mensagem}}
+    </div>
+
+    {% elif mensagem == 'Esse herói já foi cadastrado' %}
+    <div class="alert alert-danger" role="alert">
+        {{mensagem}}
+    </div>
+    {% endif %}
+
+    <div class="text-intro">
+        <div>
+          <h1 style="text-align: center;">
+            HERÓIS CANDIDATOS
+          </h1>
+        </div>
+      </div>
+
+    <form action="" method="POST">
+    <div>
+        <div class="row row-cols-1 row-cols-md-4 g-4" style="padding-left: 60px;">
+            {% for results in all_results %}
+            {% if not 'image_not_available.jpg' in results['path'].split('/') %}
+    <div class="col">
+        <div class="card mb-3" style="width: 18rem; padding-left: 15px; padding-right: 15px;">
+            <div class="check_box">
+                <input type="checkbox" value="{{results['nome']}}~{{results['path']}}" name="mycheckbox">
+            </div>
+            <img src="{{results['path']}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <div class="card-text">
+                    <b>{{results['nome']}}</b>
+                    <div>{{results['descrição']}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    <div class="col">
+        <div class="box">
+            <div>
+                <input type="radio" value="vingadores" name="check" id="vingadores">
+                <label for="vingadores">Tornar Vingadores</label>
+            </div>
+
+            <div>
+                <input type="radio" value="equipe" name="check" id="equipe">
+                <label style="color: rgb(0, 0, 0);" for="equipe">Tornar Equipe</label>
+            </div>
+            
+
+            <div style="padding-left: 25px;">
+                <input type="submit" class="button1" value="Confirmar" name="enviar" id="enviar">
+            </div>  
+        </div>  
+    </div>
+    </form>
+    {% endblock %}
+</body>
+</html>

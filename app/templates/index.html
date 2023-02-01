@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    {{ fontawesome_html() }}
+    
+    <link rel="stylesheet" href="../static/main.css">
+    <title>MARVEL - Challenge</title>
+    
+</head>
+<body>
+  <ul class="nav nav-tabs nav-justified" style="background-color: rgb(255, 255, 255);">
+    <li class="nav-item">
+      <a class="nav-link" style="background-color: crimson; color: aliceblue;" aria-current="page" href="/home">Início</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" style="background-color: crimson; color: aliceblue;" href="#heros">Heros</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" style="background-color: crimson; color: aliceblue;" href="/candidatos">Candidatos</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" style="background-color: crimson; color: aliceblue;" href="/candidatos/vingadores">Vingadores</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" style="background-color: crimson; color: aliceblue;" href="/candidatos/equipe">Equipe</a>
+    </li>   
+  </ul>
+
+  <div class="img-wrapper">
+    <img src="../static/bgg.jpg" alt="">
+  </div>
+
+    <div class="text-intro">
+      <div>
+        <h1>
+          MISSÃO
+        </h1>
+      </div>
+    </div>
+
+    <div class="text-intro">
+      <div>
+        <h3> Um grupo de alienígenas conhecido como os Skrulls está planejando uma incursão na Terra.
+          Os Skrulls são conhecidos por seus poderes de camuflagem e pela sua habilidade de assumir a forma de qualquer pessoa.
+          monte a sua equipe e selecione os seus melhores heróis para combater o mal.</h3>
+      </div>  
+    </div>
+  
+    {% block content %}
+  <div class="container" id="heros">
+
+        <form action="" method="POST">    
+        <div>
+            {% if mensagem == 'Operação realizada.' %}
+            <div class="alert alert-success" role="alert">
+                {{mensagem}}
+            </div>
+            {% elif mensagem == 'Herói está selecionado em candidatos' %}
+            <div class="alert alert-danger" role="alert">
+                {{mensagem}}
+            </div>
+            {% endif %}
+
+    <br>
+    <br>
+    <input type="submit" class="button1" value="Enviar seleção"><br><br>
+
+        <div class="row row-cols-1 row-cols-md-3" style="padding-left:50px">
+            {% for results in all_results.items %}
+            {% if not 'image_not_available.jpg' in results['path'].split('/') %}
+            
+            <div class="col">
+              <div class="card mb-4 mr-4" style="width: 19rem; padding-left: 15px; padding-right: 15px;">
+                  
+                    <div class="check_box">
+                      <input type="checkbox" value="{{results['nome']}}~{{results['path']}}" name="mycheckbox">
+                    </div>
+     
+                  
+                  <img src="{{results['path']}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <div class="card-text">
+                        <b>{{results['nome']}}</b>
+                        <div>{{results['descrição']}}</div>
+                      </div>                      
+                    </div>
+              </div>
+            </div>
+        {% endif %}
+        {% endfor %}
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+              </li>
+              {% for page_num in all_results.iter_pages() %}
+              {% if page_num %}
+              <li class="page-item"><a class="page-link" style="color: crimson;" href="{{url_for('home', page=page_num)}}">{{page_num}}</a></li>
+              {% else %}
+              <li class="page-item"><a class="page-link" href="#">...</a></li>
+              {% endif %}
+              {% endfor %}
+              </li>
+            </ul>
+        </nav>
+        </div>
+        </form>
+  </div>
+    
+    {% endblock %}
+
+    <footer>
+      <div class="footer-content">
+        <p>
+          Copyright &copy; 2023, v0ltmx
+        </p>
+      </div> 
+    </footer>
+
+    <a href="/home" id="link-topo">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+</body>
+</html>

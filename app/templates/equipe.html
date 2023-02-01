@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    {{ fontawesome_html() }}
+    <title>EQUIPE - HERÓIS</title>
+    <link rel="stylesheet" href="../static/main.css">
+</head>
+
+<body>
+    {% block content %}
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item" >
+            <a class="nav-link" style="background-color: crimson; color: aliceblue;" aria-current="page" href="/home">Início</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" style="background-color: crimson; color: aliceblue;" href="/candidatos">Candidatos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="background-color: crimson; color: aliceblue;" href="/candidatos/vingadores">Vingadores</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="background-color: crimson; color: aliceblue;" href="/candidatos/equipe">Equipe</a>
+        </li>
+
+    </ul>
+    <div class="text-intro">
+        <div>
+          <h1 style="text-align: center;">
+            HERÓIS DA EQUIPE
+          </h1>
+        </div>
+    </div>
+
+    <form action="" method="POST">
+    <div>
+        <div class="row row-cols-1 row-cols-md-4 g-4" style="padding-left: 60px;">
+            {% for results in all_results %}
+            {% if not 'image_not_available.jpg' in results['path'].split('/') %}
+        <div class="col">
+            <div class="card mb-9" style="width: 18rem; padding-left: 15px; padding-right: 15px;">
+                <div class="check_box">
+                    <input type="checkbox" value="{{results['nome']}}" name="mycheckbox">
+                </div>
+                <img src="{{results['path']}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="card-text">
+                    <b>{{results['nome']}}</b>
+                    <div>{{results['descrição']}}</div>
+                    </div>
+                <div class="">
+                    <input type="submit" class="button2" value="Excluir">     
+                </div>    
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% endfor %}
+    
+    </form>
+    {% endblock %}
+</body>
+</html>
