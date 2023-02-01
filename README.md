@@ -28,23 +28,29 @@
 
 ## Instalação:
 - Clone este repositório
-- > cd challenge_marvel > code .
-- > pip install -r requirements.py
+- `cd challenge_marvel`
+- `code .`
+- `pip install -r requirements.py`
 - > Configure os dots da sua env no arquivo de configuração (config.py)
-- > O projeto utiliza o SQLite3, realize o migrate e upgrade após create db. > flask db init, flask db migrate, flask db upgrade
-- > run: python run.py runserver
-- ``teste
+- > O projeto utiliza o SQLite3, realize o migrate e upgrade após create db. 
+- `flask db init`
+- `flask db migrate`
+- `flask db upgrade`
+- `python run.py runserver`
 - > connect no browser: localhost:5000
 
-
 ## Installation:
-- Clone this repository 
-- > cd challenge_marvel > code . 
-- > pip install -r requirements.py 
-- > Configure your environment dots in the configuration file (config.py)
-- > The project uses SQLite3, perform the migrate and upgrade after create db. > flask db init, flask db migrate, flask db upgrade 
-- > run: python run.py runserver 
-- > connect to the browser: localhost:5000
+- Clone this repository
+- `cd challenge_marvel`
+- `code .`
+- `pip install -r requirements.py`
+- > Configure your env dots in the configuration file (config.py)
+- > The project uses SQLite3, perform the migrate and upgrade after create db. 
+- `flask db init`
+- `flask db migrate`
+- `flask db upgrade`
+- `python run.py runserver`
+- > connect in browser: localhost:5000
 
 ## Overview:
  - in progress..
