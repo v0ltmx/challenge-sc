@@ -12,7 +12,7 @@
 - ORM: SQLAlchemy
 - Banco: SQLite
 - Docker
-- ssl(ZeroSSL) + domain(netlify) > in progress..
+- ssl(ZeroSSL) + domain > in progress..
 
 ## Funcionamento:
 - `Funcionalidade 1`: listar todos os heróis com foto, nome e descrição
