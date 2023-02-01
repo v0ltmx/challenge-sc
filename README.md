@@ -11,7 +11,6 @@
 - Framework: Flask
 - ORM: SQLAlchemy
 - Banco: SQLite
-- Docker
 - ssl(ZeroSSL) + domain > in progress..
 
 ## Funcionamento:
